@@ -1,0 +1,73 @@
+@media (max-width: $phn-sm-max)
+
+@media (min-width: $phn-md-min)
+
+@media (min-width: $phn-lg-min)
+
+
+@media (min-width: $tab-sm-min)
+
+@media (min-width: $tab-md-min)
+
+@media (min-width: $tab-lg-min)
+
+
+@media (min-width: $pc-sm-min)
+
+@media (min-width: $pc-md-min)
+
+@media (min-width: $pc-lg-min)
+
+
+// Phone
+@media (max-width: $phn-sm-max)
+	@if $container-width-phn-sm == auto
+
+	@else
+		$column-name: $total-column
+		$column-padding: (($total-column - 1) * ($column-margin * 2))
+		@while $column-name > 0
+			.col-phn-sm-#{$column-name}
+				width: ((($container-width-phn-sm - $column-padding) / $total-column) * $column-name) + (($column-name - 1) * ($column-margin))
+				margin: 0 $column-margin
+				float: $column-float
+				padding: 0
+				box-sizing: border-box
+			$column-name: $column-name - 1
+
+// @media (min-width: $phn-md-min)
+// 	@if $container-width-phn-sm-auto == true
+
+// 	@else
+
+// @media (min-width: $phn-lg-min)
+// 	@if $container-width-phn-sm-auto == ture
+
+// 	@else
+
+
+// // Tab
+// @if $container-width-phn-sm-auto == true
+
+// @else
+
+// @if $container-width-phn-sm-auto == true
+
+// @else
+
+// @if $container-width-phn-sm-auto == true
+
+// @else
+
+// // PC
+// @if $container-width-phn-sm-auto == true
+
+// @else
+
+// @if $container-width-phn-sm-auto == true
+
+// @else
+
+// @if $container-width-phn-sm-auto == true
+
+// @else
