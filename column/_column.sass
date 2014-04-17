@@ -1,73 +1,79 @@
-@media (max-width: $phn-sm-max)
+$column-name: $total-column
 
-@media (min-width: $phn-md-min)
+@while $column-name > 0
+	.col-#{$column-name}
+		margin: 0
+		float: $column-float
+		padding: 0 $column-padding
+		box-sizing: border-box
 
-@media (min-width: $phn-lg-min)
+		// Phone
 
+		@media (max-width: $phn-sm-max)
+			@if $container-width-phn-sm == auto
+				width: ((100% / $total-column) * $column-name)
 
-@media (min-width: $tab-sm-min)
+			@else
+				width: (($container-width-phn-sm / $total-column) * $column-name)
 
-@media (min-width: $tab-md-min)
+		@media (min-width: $phn-md-min)
+			@if $container-width-phn-md == auto
+				width: ((100% / $total-column) * $column-name)
 
-@media (min-width: $tab-lg-min)
+			@else
+				width: (($container-width-phn-md / $total-column) * $column-name)
 
+		@media (min-width: $phn-lg-min)
+			@if $container-width-phn-lg == auto
+				width: ((100% / $total-column) * $column-name)
 
-@media (min-width: $pc-sm-min)
+			@else
+				width: (($container-width-phn-lg / $total-column) * $column-name)
 
-@media (min-width: $pc-md-min)
+		// Tab
 
-@media (min-width: $pc-lg-min)
+		@media (min-width: $tab-sm-min)
+			@if $container-width-tab-sm == auto
+				width: ((100% / $total-column) * $column-name)
 
+			@else
+				width: (($container-width-tab-sm / $total-column) * $column-name)
 
-// Phone
-@media (max-width: $phn-sm-max)
-	@if $container-width-phn-sm == auto
+		@media (min-width: $tab-md-min)
+			@if $container-width-tab-md == auto
+				width: ((100% / $total-column) * $column-name)
 
-	@else
-		$column-name: $total-column
-		$column-padding: (($total-column - 1) * ($column-margin * 2))
-		@while $column-name > 0
-			.col-phn-sm-#{$column-name}
-				width: ((($container-width-phn-sm - $column-padding) / $total-column) * $column-name) + (($column-name - 1) * ($column-margin))
-				margin: 0 $column-margin
-				float: $column-float
-				padding: 0
-				box-sizing: border-box
-			$column-name: $column-name - 1
+			@else
+				width: (($container-width-tab-md / $total-column) * $column-name)
 
-// @media (min-width: $phn-md-min)
-// 	@if $container-width-phn-sm-auto == true
+		@media (min-width: $tab-lg-min)
+			@if $container-width-tab-lg == auto
+				width: ((100% / $total-column) * $column-name)
 
-// 	@else
+			@else
+				width: (($container-width-tab-lg / $total-column) * $column-name)
 
-// @media (min-width: $phn-lg-min)
-// 	@if $container-width-phn-sm-auto == ture
+		// PC
 
-// 	@else
+		@media (min-width: $pc-sm-min)
+			@if $container-width-pc-sm == auto
+				width: ((100% / $total-column) * $column-name)
 
+			@else
+				width: (($container-width-pc-sm / $total-column) * $column-name)
 
-// // Tab
-// @if $container-width-phn-sm-auto == true
+		@media (min-width: $pc-md-min)
+			@if $container-width-pc-md == auto
+				width: ((100% / $total-column) * $column-name)
 
-// @else
+			@else
+				width: (($container-width-pc-md / $total-column) * $column-name)
 
-// @if $container-width-phn-sm-auto == true
+		@media (min-width: $pc-lg-min)
+			@if $container-width-pc-lg == auto
+				width: ((100% / $total-column) * $column-name)
 
-// @else
+			@else
+				width: (($container-width-pc-lg / $total-column) * $column-name)
 
-// @if $container-width-phn-sm-auto == true
-
-// @else
-
-// // PC
-// @if $container-width-phn-sm-auto == true
-
-// @else
-
-// @if $container-width-phn-sm-auto == true
-
-// @else
-
-// @if $container-width-phn-sm-auto == true
-
-// @else
+	$column-name: $column-name - 1
