@@ -1,0 +1,111 @@
+// The Grid is an adaptive focused responsive frame work.
+// You will see bellow that there are three break-points
+// for each device type.
+// 
+// I want to again state the focus on adaptive and not
+// responsive. To accomplish this, each break point has
+// styles unique to it.
+
+$phn-sm:							320px			// iPhone and smaller devices.
+$phn-md: 							360px			// Medium Sized Android phones
+$phn-lg:	 						480px			// Phablits
+
+$tab-sm: 							600px			// Small tablets like the Nexus 7
+$tab-md: 							768px			// iPad Portrait
+$tab-lg:	 						1024px			// iPad Landscape
+
+$pc-sm: 							1025px			// Small Netbooks
+$pc-md: 							1440px			// Most all Laptops
+$pc-lg: 							1920px			// Large laptops and Desktops.
+
+// Typography
+
+$base-font-size:					14px
+$baseline:							18px
+
+// Container
+
+// The container has auto width up to tab-lg. This is for
+// edge to edge on mobile devices. You will not have to re-
+// write the whole framework to get arround this. Simply
+// change these variables below.
+
+$container-width-phn-sm:			auto
+$container-width-phn-md:			auto
+$container-width-phn-lg:			auto
+
+$container-width-tab-sm:			auto
+$container-width-tab-md:			auto
+$container-width-tab-lg:			auto
+
+$container-width-pc-sm:				1020px
+$container-width-pc-md:				1200px
+$container-width-pc-lg:				1400px
+
+$container-auto-width-margin:		0			// This is if you want to add some extra margin for edge to edge.
+
+// Columns
+
+// Columns should be adptive not just responsive. We by defualt
+// limit the amount of columns for mobile and tablet. We don't
+// think that there should 12 columns for every evice. If you
+// want that change it, do so here. 
+//
+// Now to explain how this works. Say your make a two column 
+// desktop layout. 3 columns on the left, 7 on the right. 
+// The 3 column will stay three columns on tablet, but the
+// 7 column will be act as a 6 column on tablet. On the 
+// phone, both will act like a single column. 
+//
+// You will in some situations want an overide to this system. 
+// Maybe I want for tablets 3 to become 2 and 7 to become 4.
+// Just add a tab-2 class to the three column and a tab-4 class
+// to the 7 column. 
+
+$max-column-phn:					1
+$max-column-tab:					6
+$max-column-pc:						12
+
+
+
+$column-padding:					($baseline / 2)
+$column-float:						left
+
+// Images
+
+
+// Media Min Max
+
+$phn-sm-min: 						$phn-sm
+$phn-sm-max: 						($phn-md - 1)
+
+$phn-md-min: 						($phn-sm + 1)
+$phn-md-max: 						($phn-lg - 1)
+
+$phn-lg-min: 						($phn-md + 1)
+$phn-lg-max: 						($tab-sm - 1)
+
+$phn:								$phn-lg-max
+
+
+$tab-sm-min: 						($phn-lg + 1)
+$tab-sm-max: 						($tab-md - 1)
+
+$tab-md-min: 						($tab-sm + 1)
+$tab-md-max: 						($tab-lg - 1)
+
+$tab-lg-min: 						($tab-md + 1)
+$tab-lg-max: 						($pc-sm - 1)
+
+$tab:								$tab-lg-max
+
+
+$pc-sm-min: 						($tab-lg + 1)
+$pc-sm-max: 						($pc-md - 1)
+
+$pc-md-min: 						($pc-sm + 1)
+$pc-md-max: 						($pc-lg - 1)
+
+$pc-lg-min: 						($pc-md + 1)
+
+$pc: 								$pc-sm-min

@@ -1,7 +1,17 @@
-$column-name: $total-column
+$max-column: max($max-column-phn, $max-column-tab, $max-column-pc)
+// Finding the largest column value.
 
-@while $column-name > 0
-	.col-#{$column-name}
+
+$column-number: $max-column
+// Duplicating max column for name of column classes.
+
+@while $column-number > 0
+	// Complex loop to create infinate number of class of columns.
+	// The first bit of the loop will be commented to expain how
+	// it works. The only difference further down is the sizes.
+
+	.col-#{$column-number}
+		// Bases styles fot .col
 		margin: 0
 		float: $column-float
 		padding: 0 $column-padding
@@ -9,71 +19,288 @@ $column-name: $total-column
 
 		// Phone
 
-		@media (max-width: $phn-sm-max)
+		@if $column-number > $max-column-phn
+			// This makes columns that are larger than the
+			// max column width for phone equal to the
+			// container width.
+
+			// Phone Small
 			@if $container-width-phn-sm == auto
-				width: ((100% / $total-column) * $column-name)
+				// Check for container Phone Small width auto.
+
+				@media (max-width: $phn-sm-max)
+					// Column width in percentage
+
+					width: 100%
 
 			@else
-				width: (($container-width-phn-sm / $total-column) * $column-name)
+				// Check for container width pixels.
 
-		@media (min-width: $phn-md-min)
+				@media (max-width: $phn-sm-max)
+					// Column width in pixels
+
+					width: $container-width-phn-sm
+
+			// Phone Medium
 			@if $container-width-phn-md == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (max-width: $phn-md-max)
+					width: 100%
 
 			@else
-				width: (($container-width-phn-md / $total-column) * $column-name)
+				@media (max-width: $phn-md-max)
+					width: $container-width-phn-md
 
-		@media (min-width: $phn-lg-min)
+			// Phone Large
 			@if $container-width-phn-lg == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (max-width: $phn-lg-max)
+					width: 100%
 
 			@else
-				width: (($container-width-phn-lg / $total-column) * $column-name)
+				@media (max-width: $phn-lg-max)
+					width: $container-width-phn-lg
+
+		@else
+			// This makes columns that are not larger than
+			// the max column width for phone as large as
+			// the $column-number.
+
+			// Phone Small
+			@if $container-width-phn-sm == auto
+				// Check for container width auto.
+
+				@media (max-width: $phn-sm-max)
+					// Column width in percentage. (Container width
+					// devided by $max-column-phn) * $column-number
+
+					width: ((100% / $max-column-phn) * $column-number)
+
+			@else
+				// Check for container width pixels.
+
+				@media (max-width: $phn-sm-max)
+					// Column width in pixels
+
+					width: (($container-width-phn-sm / $max-column-phn) * $column-number)
+
+			// Phone Medium
+			@if $container-width-phn-md == auto
+				@media (min-width: $phn-md-min)
+					width: ((100% / $max-column-phn) * $column-number)
+
+			@else
+				@media (min-width: $phn-md-min)
+					width: (($container-width-phn-md / $max-column-phn) * $column-number)
+
+			// Phone Large
+			@if $container-width-phn-lg == auto
+				@media (min-width: $phn-lg-min)
+					width: ((100% / $max-column-phn) * $column-number)
+
+			@else
+				@media (min-width: $phn-lg-min)
+					width: (($container-width-phn-lg / $max-column-phn) * $column-number)
 
 		// Tab
 
-		@media (min-width: $tab-sm-min)
+		@if $column-number > $max-column-tab
+
 			@if $container-width-tab-sm == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (min-width: $tab-sm-min)
+					width: 100%
 
 			@else
-				width: (($container-width-tab-sm / $total-column) * $column-name)
+				@media (min-width: $tab-sm-min)
+					width: $container-width-tab-sm
 
-		@media (min-width: $tab-md-min)
 			@if $container-width-tab-md == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (min-width: $tab-md-min)
+					width: 100%
 
 			@else
-				width: (($container-width-tab-md / $total-column) * $column-name)
+				@media (min-width: $tab-md-min)
+					width: $container-width-tab-md
 
-		@media (min-width: $tab-lg-min)
 			@if $container-width-tab-lg == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (min-width: $tab-lg-max)
+					width: 100%
 
 			@else
-				width: (($container-width-tab-lg / $total-column) * $column-name)
+				@media (min-width: $tan-lg-min)
+					width: $container-width-tab-lg
+			
+		@else
+			@if $container-width-tab-sm == auto
+				@media (min-width: $tab-sm-min)
+					width: ((100% / $max-column-tab) * $column-number)
+
+			@else
+				@media (min-width: $tab-sm-min)
+					width: (($container-width-tab-sm / $max-column-tab) * $column-number)
+
+			@if $container-width-tab-md == auto
+				@media (min-width: $tab-md-min)
+					width: ((100% / $max-column-tab) * $column-number)
+
+			@else
+				@media (min-width: $tab-md-min)
+					width: (($container-width-tab-md / $max-column-tab) * $column-number)
+
+			@if $container-width-tab-lg == auto
+				@media (min-width: $tab-lg-min)
+					width: ((100% / $max-column-tab) * $column-number)
+
+			@else
+				@media (min-width: $tab-lg-min)
+					width: (($container-width-tab-lg / $max-column-tab) * $column-number)
 
 		// PC
 
-		@media (min-width: $pc-sm-min)
+		@if $column-number > $max-column-pc
+
 			@if $container-width-pc-sm == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (min-width: $pc-sm-min)
+					width: 100%
 
 			@else
-				width: (($container-width-pc-sm / $total-column) * $column-name)
+				@media (min-width: $pc-sm-min)
+					width: $container-width-pc-sm
 
-		@media (min-width: $pc-md-min)
 			@if $container-width-pc-md == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (min-width: $pc-md-min)
+					width: 100%
 
 			@else
-				width: (($container-width-pc-md / $total-column) * $column-name)
+				@media (min-width: $pc-md-min)
+					width: $container-width-pc-md
 
-		@media (min-width: $pc-lg-min)
 			@if $container-width-pc-lg == auto
-				width: ((100% / $total-column) * $column-name)
+				@media (min-width: $pc-lg-min)
+					width: 100%
 
 			@else
-				width: (($container-width-pc-lg / $total-column) * $column-name)
+				@media (min-width: $tan-lg-min)
+					width: $container-width-pc-lg
 
-	$column-name: $column-name - 1
+		@else
+			@if $container-width-pc-sm == auto
+				@media (min-width: $pc-sm-min)
+					width: ((100% / $max-column-pc) * $column-number)
+
+			@else
+				@media (min-width: $pc-sm-min)
+					width: (($container-width-pc-sm / $max-column-pc) * $column-number)
+
+			@if $container-width-pc-md == auto
+				@media (min-width: $pc-md-min)
+					width: ((100% / $max-column-pc) * $column-number)
+
+			@else
+				@media (min-width: $pc-md-min)
+					width: (($container-width-pc-md / $max-column-pc) * $column-number)
+
+			@if $container-width-pc-lg == auto
+				@media (min-width: $pc-lg-min)
+					width: ((100% / $max-column-pc) * $column-number)
+
+			@else
+				@media (min-width: $pc-lg-min)
+					width: (($container-width-pc-lg / $max-column-pc) * $column-number)
+
+	$column-number: $column-number - 1
+
+
+$column-number: $max-column-phn
+// Reset max column for name of column classes.
+
+@while $column-number > 0
+
+	.phn-#{$column-number}
+		@if $container-width-phn-sm == auto
+			@media (max-width: $phn-sm-max)
+				width: ((100% / $max-column-phn) * $column-number)
+
+		@else
+			@media (max-width: $phn-sm-max)
+				width: (($container-width-phn-sm / $max-column-phn) * $column-number)
+
+		@if $container-width-phn-md == auto
+			@media (min-width: $phn-md-min) and (max-width: $phn-md-max)
+				width: ((100% / $max-column-phn) * $column-number)
+
+		@else
+			@media (min-width: $phn-md-min) and (max-width: $phn-md-max)
+				width: (($container-width-phn-md / $max-column-phn) * $column-number)
+
+		@if $container-width-phn-lg == auto
+			@media (min-width: $phn-lg-min) and (max-width: $phn-lg-max)
+				width: ((100% / $max-column-phn) * $column-number)
+
+		@else
+			@media (min-width: $phn-lg-min) and (max-width: $phn-lg-max)
+				width: (($container-width-phn-lg / $max-column-phn) * $column-number)
+
+	$column-number: $column-number - 1
+
+$column-number: $max-column-tab
+// Reset max column for name of column classes.
+
+@while $column-number > 0
+
+	.tab-#{$column-number}
+		@if $container-width-tab-sm == auto
+			@media (min-width: $tab-sm-min) and (max-width: $tab-sm-max)
+				width: ((100% / $max-column-tab) * $column-number)
+
+		@else
+			@media (min-width: $tab-sm-min) and (max-width: $tab-sm-max)
+				width: (($container-width-tab-sm / $max-column-tab) * $column-number)
+
+		@if $container-width-tab-md == auto
+			@media (min-width: $tab-md-min) and (max-width: $tab-md-max)
+				width: ((100% / $max-column-tab) * $column-number)
+
+		@else
+			@media (min-width: $tab-md-min) and (max-width: $tab-md-max)
+				width: (($container-width-tab-md / $max-column-tab) * $column-number)
+
+		@if $container-width-tab-lg == auto
+			@media (min-width: $tab-md-min) and (max-width: $tab-md-max)
+				width: ((100% / $max-column-tab) * $column-number)
+
+		@else
+			@media (min-width: $tab-md-min) and (max-width: $tab-md-max)
+				width: (($container-width-tab-lg / $max-column-tab) * $column-number)
+
+	$column-number: $column-number - 1
+
+$column-number: $max-column-pc
+// Reset max column for name of column classes.
+
+@while $column-number > 0
+
+	.pc-#{$column-number}
+		@if $container-width-pc-sm == auto
+			@media (min-width: $pc-sm-min) and (max-width: $pc-sm-max)
+				width: ((100% / $max-column-pc) * $column-number)
+
+		@else
+			@media (min-width: $pc-sm-min) and (max-width: $pc-sm-max)
+				width: (($container-width-pc-sm / $max-column-pc) * $column-number)
+
+		@if $container-width-pc-md == auto
+			@media (min-width: $pc-md-min) and (max-width: $pc-md-max)
+				width: ((100% / $max-column-pc) * $column-number)
+
+		@else
+			@media (min-width: $pc-md-min) and (max-width: $pc-md-max)
+				width: (($container-width-pc-md / $max-column-pc) * $column-number)
+
+		@if $container-width-pc-lg == auto
+			@media (min-width: $pc-lg-min)
+				width: ((100% / $max-column-pc) * $column-number)
+
+		@else
+			@media (min-width: $pc-lg-min)
+				width: (($container-width-pc-lg / $max-column-pc) * $column-number)
+
+	$column-number: $column-number - 1
