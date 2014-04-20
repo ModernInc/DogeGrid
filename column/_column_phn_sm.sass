@@ -1,0 +1,67 @@
+$column-number: $max-column
+// Duplicating max column for name of column classes.
+
+@while $column-number > 0
+	// Complex loop to create infinate number of class of columns.
+	// The first bit of the loop will be commented to expain how
+	// it works. The only difference further down is the sizes.
+
+	.col-#{$column-number}
+		// Bases styles fot .col
+		margin: 0
+		float: $column-float
+		padding: 0 $column-padding
+		box-sizing: border-box
+
+		@if $column-number > $max-column-phn
+			// This makes columns that are larger than the
+			// max column width for phone equal to the
+			// container width.
+
+			// Phone Small
+			@if $container-width-phn-sm == auto
+				// Check for container Phone Small width auto.
+
+				width: 100%
+				// Column width in percentage
+
+			@else
+				// Check for container width pixels.
+
+				width: $container-width-phn-sm
+				// Column width in pixels
+
+		@else
+			// This makes columns that are not larger than
+			// the max column width for phone as large as
+			// the $column-number.
+
+			// Phone Small
+			@if $container-width-phn-sm == auto
+				// Check for container width auto.
+
+				width: ((100% / $max-column-phn) * $column-number)
+				// Column width in percentage. (Container width
+				// devided by $max-column-phn) * $column-number
+
+			@else
+				// Check for container width pixels.
+
+				width: (($container-width-phn-sm / $max-column-phn) * $column-number)
+				// Column width in pixels
+	
+	$column-number: $column-number - 1
+
+
+$column-number: $max-column-phn
+
+@while $column-number > 0
+
+	.phn-#{$column-number}
+		@if $container-width-phn-sm == auto
+			width: ((100% / $max-column-phn) * $column-number)
+
+		@else
+			width: (($container-width-phn-sm / $max-column-phn) * $column-number)
+
+	$column-number: $column-number - 1

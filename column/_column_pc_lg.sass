@@ -1,0 +1,41 @@
+$column-number: $max-column
+
+@while $column-number > 0
+
+	.col-#{$column-number}
+		margin: 0
+		float: $column-float
+		padding: 0 $column-padding
+		box-sizing: border-box
+
+		@if $column-number > $max-column-pc
+
+			@if $container-width-pc-lg == auto
+				width: 100%
+
+			@else
+				width: $container-width-pc-lg
+
+		@else
+
+			@if $container-width-pc-lg == auto
+				width: ((100% / $max-column-pc) * $column-number)
+
+			@else
+				width: (($container-width-pc-lg / $max-column-pc) * $column-number)
+
+	$column-number: $column-number - 1
+
+
+$column-number: $max-column-pc
+
+@while $column-number > 0
+
+	.pc-#{$column-number}
+		@if $container-width-pc-lg == auto
+			width: ((100% / $max-column-pc) * $column-number)
+
+		@else
+			width: (($container-width-pc-lg / $max-column-pc) * $column-number)
+
+	$column-number: $column-number - 1

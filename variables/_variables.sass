@@ -66,7 +66,7 @@ $max-column-phn:					1
 $max-column-tab:					6
 $max-column-pc:						12
 
-
+$max-column:						max($max-column-phn, $max-column-tab, $max-column-pc) // Finding the largest column value.
 
 $column-padding:					($baseline / 2)
 $column-float:						left
@@ -76,35 +76,37 @@ $column-float:						left
 
 // Media Min Max
 
-$phn-sm-max: 						($phn-md - 1)
+$pc-lg-min: 						$pc-lg
 
-$phn-md-min: 						$phn-md
-$phn-md-max: 						($phn-lg - 1)
-
-$phn-lg-min: 						$phn-lg
-$phn-lg-max: 						($tab-sm - 1)
-
-$phn:								$phn-lg-max
-
-
-$tab-sm-min: 						$tab-sm
-$tab-sm-max: 						($tab-md - 1)
-
-$tab-md-min: 						$tab-md
-$tab-md-max: 						($tab-lg - 1)
-
-$tab-lg-min: 						$tab-lg
-$tab-lg-max: 						($pc-sm - 1)
-
-$tab:								$tab-lg-max
-
-
-$pc-sm-min: 						$pc-sm
-$pc-sm-max: 						($pc-md - 1)
-
+$pc-md-max: 						($pc-lg-min - 1)
 $pc-md-min: 						$pc-md
-$pc-md-max: 						($pc-lg - 1)
 
-$pc-lg-min: 						($pc-md-max + 1)
+$pc-sm-max: 						($pc-md-min - 1)
+$pc-sm-min: 						$pc-sm
 
-$pc: 								$pc-sm-min
+$pc:								$pc-sm-min
+
+
+$tab-lg-max: 						($pc-sm-min - 1)
+$tab-lg-min: 						$tab-lg
+
+$tab-md-max: 						($tab-lg-min - 1)
+$tab-md-min: 						$tab-md
+
+$tab-sm-max: 						($tab-md-min - 1)
+$tab-sm-min: 						$tab-sm
+
+$tab:								$tab-sm-min
+
+
+$phn-lg-max: 						($tab-sm-min - 1)
+$phn-lg-min: 						$phn-lg
+
+$phn-md-max: 						($phn-lg-min - 1)
+$phn-md-min: 						$phn-md
+
+$phn-sm-max: 						($phn-md-min - 1)
+$phn-sm-min:						0
+
+$phn:								$phn-sm-min
+

@@ -1,0 +1,10 @@
+.container
+	box-sizing: border-box
+	
+	@if $container-width-pc-md == auto
+		width: $container-width-pc-md
+		margin: $container-auto-width-margin
+
+	@else
+		width: $container-width-pc-md
+		margin: 0 auto
