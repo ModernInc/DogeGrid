@@ -12,6 +12,7 @@ $column-number: $max-column
 		float: $column-float
 		padding: 0 $column-padding
 		box-sizing: border-box
+		display: block
 
 		@if $column-number > $max-column-phn
 			// This makes columns that are larger than the
@@ -54,14 +55,33 @@ $column-number: $max-column
 
 
 $column-number: $max-column-phn
+// Resetting max column for name of column classes.
 
 @while $column-number > 0
+	// Simple Loop to workout how many columns for that unique size.
+	// Then we make reset classes for that number of columns. This is
+	// Used if you have a col-7 that you want to be a different size
+	// for a smaller column amount.
 
 	.phn-#{$column-number}
 		@if $container-width-phn-sm == auto
+			// Check for container width auto.
+
 			width: ((100% / $max-column-phn) * $column-number)
+			// Column width in percentage. (Container width
+			// devided by $max-column-phn) * $column-number
 
 		@else
+			// Check for container width pixels.
+
 			width: (($container-width-phn-sm / $max-column-phn) * $column-number)
+			// Column width in pixels
 
 	$column-number: $column-number - 1
+
+
+.hidden-phn
+	display: none
+
+.hidden-phn-sm
+	display: none
