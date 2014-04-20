@@ -1,0 +1,10 @@
+.container
+	box-sizing: border-box
+	
+	@if $container-width-device-size == auto
+		width: $container-width-device-size
+		margin: $container-auto-width-margin
+
+	@else
+		width: $container-width-device-size
+		margin: 0 auto
