@@ -5,7 +5,7 @@ $column-number: $max-column
 		padding: 0 $column-padding
 		box-sizing: border-box
 		display: block
-		@if $column-number > $max-column-device
+		@if $column-number >= $max-column-device
 			@if $container-width-device-size == auto
 				width: 100%
 			@else
@@ -16,6 +16,14 @@ $column-number: $max-column
 			@else
 				width: (($container-width-device-size / $max-column-device) * $column-number)
 	.offset-#{$column-number}
+		@if $column-number > $max-column-device
+			margin-left: 0
+		@else
+			@if $container-width-device-size == auto
+				margin-left: ((100% / $max-column-device) * $column-number)
+			@else
+				margin-left: (($container-width-device-size / $max-column-device) * $column-number)
+	.col-#{$column-number}.col-center
 		@if $column-number > $max-column-device
 			margin-left: 0
 		@else
